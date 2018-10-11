@@ -19,3 +19,5 @@ Instructions
 `docker run -v ~/export-data:/root/export-data -v ~/export-data/gpg:/root/gpg -it [IMAGE_NAME]:latest bash`
 
 8. You should now be inside the docker container and be able to see the export-data directory
+
+
