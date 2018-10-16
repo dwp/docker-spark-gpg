@@ -1,10 +1,6 @@
 ### 1. Get Linux
 FROM alpine:3.7
 
-ADD gpg /root/gpg
-
-WORKDIR /root/gpg
-
 ### 2. Get Java via the package manager as well as GPG 
 RUN apk update \
 && apk upgrade \
@@ -26,11 +22,21 @@ RUN apk add --no-cache python2 \
 	&& pip  install --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org pypandoc \
 	&& pip install --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org  pyspark 
 
-### 4. Run GPG command within the gpg folder in order to import all the keys in to the container
-RUN gpg --import *.asc
 
-### 5. Go back up to the root directory
-WORKDIR /root
+### 4. Run shell script on start of container to import all gpg keys and go back to the root directory
+CMD chmod 777 /root/gpg/gpg.sh \
+	&& echo "Importing GPG Keys" \
+    && cd /root/gpg \
+    && gpg --import *.asc \
+    && echo "Keys which have been imported" \
+    && gpg --list-keys \
+    && echo "Rooting in to the home directory" \
+    && cd /root \
+    && /bin/bash 
+
+
+
+
 
 
 
