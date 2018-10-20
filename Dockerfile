@@ -26,25 +26,10 @@ RUN apk add --no-cache python2 \
 ### 4. Run shell script on start of container to import all gpg keys and go back to the root directory
 CMD chmod 777 /root/gpg/gpg.sh \
 	&& echo "Importing GPG Keys" \
-    && cd /root/gpg \
-    && gpg --import *.asc \
-    && echo "Keys which have been imported" \
-    && gpg --list-keys \
-    && echo "Rooting in to the home directory" \
-    && cd /root \
-    && /bin/bash 
-
-
-
-
-
-
-
-
-	
-
-	
-
-
-
-
+	&& cd /root/gpg \
+	&& gpg --import *.asc \
+	&& echo "Keys which have been imported" \
+	&& gpg --list-keys \
+	&& echo "Rooting in to the home directory" \
+	&& cd /root \
+	&& /bin/bash
