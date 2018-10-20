@@ -3,12 +3,12 @@ FROM alpine:3.7
 
 ### 2. Get Java via the package manager as well as GPG 
 RUN apk update \
-&& apk upgrade \
-&& apk add --no-cache gnupg \
-&& apk add --no-cache bash \
-&& apk add --no-cache --virtual=build-dependencies unzip \
-&& apk add --no-cache curl \
-&& apk add --no-cache openjdk8-jre
+	&& apk upgrade \
+	&& apk add --no-cache gnupg \
+	&& apk add --no-cache bash \
+	&& apk add --no-cache --virtual=build-dependencies unzip \
+	&& apk add --no-cache curl \
+	&& apk add --no-cache openjdk8-jre
 ### 3. Get Python2, PIP
 RUN apk add --no-cache python2 \
 	&& python2 -m ensurepip \
