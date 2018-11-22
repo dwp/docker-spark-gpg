@@ -22,8 +22,7 @@ RUN apk add --no-cache python2 \
 	&& pip install --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org pypandoc \
 	&& pip install --trusted-host=pypi.python.org --trusted-host=pypi.org --trusted-host=files.pythonhosted.org  pyspark
 ### 5. Run shell script on start of container to import all gpg keys and go back to the root directory
-CMD chmod 777 /root/gpg/gpg.sh \
-	&& echo "Importing GPG Keys" \
+CMD echo "Importing GPG Keys" \
 	&& cd /root/gpg \
 	&& gpg --import *.asc \
 	&& echo "The following Keys have been imported:" \
