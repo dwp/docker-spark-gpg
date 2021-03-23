@@ -1,5 +1,5 @@
 ### 1. Get Linux
-FROM alpine:3.7
+FROM alpine:3.11
 
 ### 2. Get required packages via the package manager
 RUN apk update \
